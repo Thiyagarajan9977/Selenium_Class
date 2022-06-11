@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;org.paramaters&apos; to &apos;org.parameters&apos;&#x0D;&#x0A;- Original project: &apos;TestNGTopic&apos;&#x0D;&#x0A;- Original element: &apos;TestNGTopic/src/main/java/org.paramaters&apos;&#x0D;&#x0A;- Renamed element: &apos;TestNGTopic/src/main/java/org.parameters&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;org.paramaters&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;org.paramaters" name="org.parameters" qualified="false" references="true" stamp="1617265584035" textual="false" version="1.0"/>
+</session>

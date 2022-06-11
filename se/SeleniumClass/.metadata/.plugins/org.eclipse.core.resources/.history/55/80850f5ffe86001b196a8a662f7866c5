@@ -1,0 +1,52 @@
+package org.Junit;
+
+import java.util.Date;
+
+import org.junit.*;
+import org.pom.pages2.loginpage;
+import org.test.baseclass.BaseClass;
+
+public class Facebook extends BaseClass {		
+	
+	@BeforeClass
+	private void beforeclass() {
+		launchbrowser();
+		System.out.println("Before Class");
+	}
+
+	@AfterClass
+	private void afterclass() {
+		browserquit();
+		System.out.println("After Class");
+	}
+
+	@Before	
+	private void before() {
+		Date d = new Date();
+		System.out.println("Test Starts...." +d);		
+		System.out.println("Before ");
+	}
+
+	@After
+	private void after() {
+		Date d1 = new Date();
+		System.out.println("Test ends...." +d1);
+		System.out.println("After");
+	}
+
+	@Test
+	private void Test() {
+		launchurl("https://www.facebook.com");
+		loginpage l = new loginpage();
+		filltextbox(l.getTxtusername().get(0), "Thiyagu");
+		
+		
+		System.out.println("Test");
+	}
+	
+	@Test
+	private void Test1() {
+		System.out.println("Test1");
+	}
+
+}

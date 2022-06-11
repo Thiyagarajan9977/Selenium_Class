@@ -1,0 +1,9 @@
+Feature: To Validate the facebook login functionlality
+
+  Scenario: To Validate the login functionality with invalid credentials
+    Given The Another user should be in FB login page
+    When The Another user has to fill userName and password
+      #	   0        1
+      | Thiyagu | 123456678 |
+    And The Another user has to click the login button
+    Then The Another user should navigate to the invalid login page

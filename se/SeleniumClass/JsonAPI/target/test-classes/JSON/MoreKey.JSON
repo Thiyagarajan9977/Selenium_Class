@@ -1,0 +1,43 @@
+{
+	"employee" :[
+	
+	{
+		"efirstName" : "Raj",
+		"elastName"	:	"Sekar"	
+	},
+	
+	{
+		"efirstName" : "chandra",
+		"elastName"	:	"Sekar"	
+	},
+	
+	{
+		"efirstName" : "gnana",
+		"elastName"	:	"Sekar"	
+	},
+	
+	{
+		"efirstName" : "vetri",
+		"elastName"	:	"vel"	
+	}
+	
+	],
+	
+	"manager": [
+	
+	{
+		"mfirstName" : "Raja",
+		"mlastName"	:	"laskhmi"	
+	},
+	
+	{
+		"mfirstName" : "sathya",
+		"mlastName"	:	"vani"	
+	},
+	
+	{
+		"mfirstName" : "saradha",
+		"mlastName"	:	"devi"	
+	}	
+	]		
+}

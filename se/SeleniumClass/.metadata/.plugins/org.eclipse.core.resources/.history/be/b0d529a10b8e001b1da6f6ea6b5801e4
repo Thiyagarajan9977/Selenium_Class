@@ -1,0 +1,121 @@
+package org.tasks1;
+
+import org.junit.*;
+	import static org.junit.Assert.*;
+	import java.io.IOException;
+	import java.util.Date;
+	import org.Junit.BaseClass;
+
+	public class Hotelapp extends BaseClass {
+		
+		@BeforeClass
+		public static void beforeClass() {
+			launchBrowser("Chrome");
+		}
+
+		@AfterClass
+		public static void afterClass() {
+		}
+
+		@Before
+		public void before() {
+			System.out.println(new Date());
+		}
+
+		@After
+		public void after() {
+			System.out.println(new Date());
+		}
+
+		@Test
+		public void test1() throws InterruptedException, IOException {
+			launchurl("http://adactinhotelapp.com/");
+			assertTrue("Verify URL", driver.getCurrentUrl().contains("adactinhotelapp.com"));
+			LoginPage l = new LoginPage();
+			
+			getExceldata("HotelBook", sheetname, rowno, cellno)
+			sendKeys(l.getUserid(), l.getValue("Book1", "Sheet1", 0, 1));
+			assertEquals("Verify UserName", "naveen2810", l.getUsername().getAttribute("value"));
+			sendKeys(l.getPassword(), l.getValue("Book1", "Sheet1", 1, 1));
+			assertEquals("Verify Password", "9884541277nvn", l.getPassword().getAttribute("value"));
+			click(l.getLogin());
+			Thread.sleep(2000);
+			System.out.println("Login Page Executed");
+		}
+
+		@Test
+		public void test2() throws InterruptedException, IOException {
+			HomePage h = new HomePage();
+			assertTrue("Verify URL", driver.getCurrentUrl().contains("SearchHotel"));
+			selectBy(h.getLocation(), "text", h.getValue("Book1", "Sheet1", 3, 1));
+			assertEquals("Verify Location", "London", h.getLocation().getAttribute("value"));
+			selectBy(h.getHotels(), "index", h.getValue("Book1", "Sheet1", 4, 1));
+			assertEquals("Verify Hotel List", "Hotel Hervey", h.getHotels().getAttribute("value"));
+			selectBy(h.getRoomtype(), "text", h.getValue("Book1", "Sheet1", 5, 1));
+			assertEquals("Verify Room Type", "Double", h.getRoomtype().getAttribute("value"));
+			selectBy(h.getRoomNo(), "index", h.getValue("Book1", "Sheet1", 6, 1));
+			assertEquals("Verify No. of Rooms", "2", h.getRoomNo().getAttribute("value"));
+			clear(h.getCheckInDate());
+			sendKeys(h.getCheckInDate(), h.getValue("Book1", "Sheet1", 7, 1));
+			assertEquals("Verify Date in", "23/04/2021", h.getCheckInDate().getAttribute("value"));
+			clear(h.getCheckOutDate());
+			sendKeys(h.getCheckOutDate(), h.getValue("Book1", "Sheet1", 8, 1));
+			assertEquals("Verify Date Out", "24/04/2021", h.getCheckOutDate().getAttribute("value"));
+			selectBy(h.getAdultCount(), "index", h.getValue("Book1", "Sheet1", 9, 1));
+			assertEquals("Verify Hotel List", "2", h.getAdultCount().getAttribute("value"));
+			selectBy(h.getChildCount(), "index", h.getValue("Book1", "Sheet1", 10, 1));
+			assertEquals("Verify Hotel List", "1", h.getChildCount().getAttribute("value"));
+			click(h.getSubmit());
+			System.out.println("Home Page Executed");
+			Thread.sleep(2000);
+		}
+
+		@Test
+		public void test3() throws InterruptedException {
+			assertTrue("Verify URL", driver.getCurrentUrl().contains("adactinhotelapp.com"));
+			SelectHotelPage s = new SelectHotelPage();
+			click(s.getSelectButton());
+			click(s.getContinueButton());
+			System.out.println("Select Hotel Page Executed");
+			Thread.sleep(2000);
+		}
+
+		@Test
+		public void test4() throws InterruptedException, IOException {
+			BookHotelPage b = new BookHotelPage();
+			assertTrue("Verify URL", driver.getCurrentUrl().contains("adactinhotelapp.com"));
+			sendKeys(b.getFirstName(), b.getValue("Book1", "Sheet1", 12, 1));
+			assertEquals("Verify First Name", "Naveen", b.getFirstName().getAttribute("value"));
+			sendKeys(b.getLastName(), b.getValue("Book1", "Sheet1", 13, 1));
+			assertEquals("Verify Last Name", "Venkat", b.getLastName().getAttribute("value"));
+			sendKeys(b.getAddress(), b.getValue("Book1", "Sheet1", 14, 1));
+			assertEquals("Verify Address", "26, Melandai Street, West Tambaram, Chennai 45.",
+					b.getAddress().getAttribute("value"));
+			sendKeys(b.getCreditCardNumber(), b.getValue("Book1", "Sheet1", 15, 1));
+			assertEquals("Verify Credit Card", "9884488988944980", b.getCreditCardNumber().getAttribute("value"));
+			selectBy(b.getCreditCardType(), "text", b.getValue("Book1", "Sheet1", 16, 1));
+			assertEquals("Verify Credit Card Type", "OTHR", b.getCreditCardType().getAttribute("value"));
+			selectBy(b.getExpMonth(), "text", b.getValue("Book1", "Sheet1", 17, 1));
+			assertEquals("Verify Exp Month", "10", b.getExpMonth().getAttribute("value"));
+			selectBy(b.getExpYear(), "text", b.getValue("Book1", "Sheet1", 18, 1));
+			assertEquals("Verify Exp Year", "2022", b.getExpYear().getAttribute("value"));
+			sendKeys(b.getCcvNumber(), b.getValue("Book1", "Sheet1", 19, 1));
+			assertEquals("Verify CCV", "123", b.getCcvNumber().getAttribute("value"));
+			click(b.getBtnBookNow());
+			System.out.println("Book Hotel Page Executed");
+			Thread.sleep(2000);
+		}
+
+		@Test
+		public void test5() throws InterruptedException, IOException {
+			ConfirmationPage c = new ConfirmationPage();
+			assertTrue("Verify URL", driver.getCurrentUrl().contains("adactinhotelapp.com"));
+			String orderNo = getAttribute(c.getOrderNumber());
+			System.out.println("Order Number: " + orderNo);
+			setExcelValueExisting("Book1", "Sheet1", 21, 1, orderNo);
+			System.out.println("Confirmation Page Executed");
+		}
+	}
+
+	
+}

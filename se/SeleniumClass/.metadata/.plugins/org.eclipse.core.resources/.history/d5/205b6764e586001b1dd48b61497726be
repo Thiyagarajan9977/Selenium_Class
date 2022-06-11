@@ -1,0 +1,19 @@
+package org.datadriven.excel;
+
+
+import java.io.IOException;
+
+import org.pom.pages2.loginpage;
+import org.test.baseclass.BaseClass;
+
+public class Sample extends BaseClass {
+
+	public static void main(String[] args) throws IOException {
+		launchbrowser();
+		launchurl("https://www.facebook.com");
+		loginpage l = new loginpage();
+		filltextbox(l.getTxtusername().get(0), getExceldata("new", 1, 1) );		
+		filltextbox(l.getTxtpassword(), getExceldata("Data", 10, 4));		
+		btnclick(l.getBtnlogin());		
+	}
+}

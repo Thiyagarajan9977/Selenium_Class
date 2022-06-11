@@ -1,0 +1,22 @@
+package org.parallel;
+
+import org.baseclass.BaseClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class ParallelTest extends BaseClass {
+	@Parameters({ "browsername" })
+	@Test	
+	private void before(String BrowserName) {
+		if (BrowserName.equals("chrome")) {
+			launchBrowser2("chrome");
+		} else if (BrowserName.equals("Firefox")) {
+			launchBrowser2("Firefox");
+		} else if (BrowserName.equals("internet explorer")) {
+			launchBrowser2("internet explorer");
+		} else {
+			System.err.println("Invalid Browser");
+		}		
+		System.out.println("Done");
+	}
+}

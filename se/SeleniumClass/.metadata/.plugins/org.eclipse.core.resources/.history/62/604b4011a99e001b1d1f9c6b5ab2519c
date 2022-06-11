@@ -1,0 +1,43 @@
+package org.main.program;
+
+import java.util.*;
+import org.base.BaseClass;
+import org.locators.Homepage;
+import org.openqa.selenium.WebElement;
+
+public class NewEgg extends BaseClass {
+	
+	public static void main(String[] args) {
+		
+		launchbrowser();
+		launchurl("https://www.newegg.ca/");
+		Homepage h =  new Homepage();
+		sendkeys(h.getSearch(), "samsung phone");
+		btnclick(h.getBtnclick());
+		List<WebElement> product = h.getProductName();	
+		
+		for (int i = 0; i < product.size(); i++) {				
+		List<WebElement> k = h.getProductName();		
+		System.out.println(k.get(i).getText());							
+		}			
+		
+		System.out.println(" Printing all product price amount");
+		
+		List<WebElement> amount = h.getPriceamount();
+		
+		for (int i = 0; i < amount.size(); i++) {				
+			List<WebElement> k = h.getPriceamount();		
+			System.out.println(k.get(i).getText());							
+		}
+		
+		
+		
+		String Text =  amount.get(1).getText();
+		
+		
+		
+		
+		
+		
+	}
+}

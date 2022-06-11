@@ -1,0 +1,18 @@
+package org.pom;
+
+import org.test.BaseClass;
+
+public class Sample extends BaseClass {
+
+	public static void main(String[] args) {
+		launchbrowser();
+		launchurl("https://www.facebook.com");
+		loginpage l = new loginpage();
+		filltextbox(l.getTxtusername(), "thiyaguji@yahoo.com");
+		filltextbox(l.getTxtpassword(), "9345030174@rT");
+		driver.navigate().refresh();
+		filltextbox(l.getTxtusername(), "Thiygau");
+		filltextbox(l.getTxtpassword(), "123456");
+		btnclick(l.getBtnlogin());
+	}
+}

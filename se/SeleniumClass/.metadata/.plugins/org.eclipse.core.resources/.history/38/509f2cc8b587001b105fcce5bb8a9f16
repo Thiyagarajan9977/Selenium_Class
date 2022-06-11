@@ -1,0 +1,45 @@
+package org.Test;
+
+import org.testng.annotations.*;
+
+public class Sample1 {
+	
+	@BeforeClass
+	private void beforeclass() {
+			System.out.println("Before Class");
+	}
+	
+	@AfterClass
+	private void afterclass() {
+			System.out.println("after Class");
+	}
+	
+	@BeforeMethod
+	private void beforemethod() {
+	System.out.println("Before Method");
+	}
+	
+	@AfterMethod
+	private void aftermethod() {
+	System.out.println("After Method");	
+	}
+	
+	//Priority is used to set the execution order 
+	// Invocations Count 
+	// Enabled is one of condition like act as @Ignore case to stop the separate test case 
+		
+	@Test(priority=-1, enabled = false)
+	private void test2() {
+	System.out.println("Test2");
+	}
+	
+	@Test(invocationCount=5)
+	private void test3() {
+		System.out.println("Test3");
+	}
+	
+	@Test(priority=-2)
+	private void test1() {
+		System.out.println("Test1");
+	}
+}

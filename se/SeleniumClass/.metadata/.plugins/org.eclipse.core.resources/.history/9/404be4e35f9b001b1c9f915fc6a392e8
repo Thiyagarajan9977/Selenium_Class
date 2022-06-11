@@ -1,0 +1,38 @@
+package org.api.json.task;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class LISTUSERS {
+
+	public static void main(String[] args) throws IOException, ParseException {
+
+		FileReader f = new FileReader(
+				"C:\\Users\\Admin\\eclipse-workspace\\SeleniumClass\\JsonAPI\\src\\test\\resources\\JSON\\LIST USERS.JSON");
+
+		JSONParser j = new JSONParser();
+		Object p = j.parse(f);
+
+		JSONObject jo = (JSONObject) p;
+		Object obj = jo.get("total");
+		System.out.println(obj);
+
+		
+		Object ob2 = jo.get("data");
+
+		JSONArray js = (JSONArray) ob2;
+		
+		for (Object c : js) {
+			
+			JSONobject j = (JSONObject)c;
+
+			System.out.println(c);
+
+		}
+	}
+}

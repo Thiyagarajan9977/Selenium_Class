@@ -1,0 +1,19 @@
+package org.main.program;
+
+import org.base.BaseClass;
+import org.locators.Homepage;
+import org.openqa.selenium.WebElement;
+
+
+public class LowesPage extends BaseClass {
+	
+	public static void main(String[] args) {
+		
+		launchbrowser();
+		launchurl("https://www.lowes.com/");
+		Homepage h =  new Homepage();
+		sendkeys(h.getSearch(), "whirlpool refrigerators");
+		btnclick(h.getBtnclick());
+		
+	}
+}

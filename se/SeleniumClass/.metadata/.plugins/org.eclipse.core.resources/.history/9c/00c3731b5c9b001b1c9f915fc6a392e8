@@ -1,0 +1,30 @@
+package org.api.json.task;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class LISTUSERS {
+	
+	public static void main(String[] args) throws IOException, ParseException {
+		
+		FileReader f = new FileReader("C:\\Users\\Admin\\eclipse-workspace\\SeleniumClass\\JsonAPI\\src\\test\\resources\\JSON\\LIST USERS.JSON");
+		
+		
+		JSONParser j = new JSONParser();
+		Object p = j.parse(f);
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+
+}

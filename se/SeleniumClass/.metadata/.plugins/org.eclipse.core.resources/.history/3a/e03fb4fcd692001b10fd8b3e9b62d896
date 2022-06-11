@@ -1,0 +1,60 @@
+package org.task1;
+
+import java.util.Date;
+import org.baseclass.BaseClass;
+import org.priority.loginpage;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class Task1 extends BaseClass {
+	
+	@BeforeClass
+	private void beforeclass() {
+		launchbrowser();
+		System.out.println("Before Class");
+	}
+	@AfterClass
+	private void afterclass() {
+		browserquit();
+		System.out.println("after Class");
+	}
+	@BeforeMethod
+	private void beforemethod() {
+		System.out.println("Test starts........"+new Date());		
+		System.out.println("Before Method");
+	}
+	@AfterMethod
+	private void aftermethod() {
+		System.out.println("Test ends........"+new Date());
+		System.out.println("After Method");
+	}
+		
+	
+	@Test@Parameters({"username", "password"})
+	private void test2(String user, String pass) {
+		launchurl("https://www.facebook.com");
+		SoftAssert s = new SoftAssert();
+		s.assertEquals(getCurrentUrl().contains("facebok"), "Invalid URL Access");		
+		loginpage l = new loginpage();
+		sendkeys(l.getTxtusername(), user);
+		s.assertEquals(l.getTxtusername().getAttribute(user), "Valid Username");
+		sendkeys(l.getTxtpassword(), pass);
+		btnclick(l.getBtnlogin());
+		s.assertAll();
+	}
+	@Test
+	private void test3() {
+		System.out.println("Test3");
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,77 @@
+package org.dataproviderinexcel;
+
+import java.text.SimpleDateFormat;
+import java.io.*;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class DatawithExcel {
+
+	public static Object[][] getdata() throws IOException {
+
+		File f = new File(
+				"C:\\Users\\Admin\\eclipse-workspace\\SeleniumClass\\TestNGTopic\\src\\main\\resources\\Reports\\Datas.xlsx");
+
+		FileInputStream fi = new FileInputStream(f);
+		Workbook w = new XSSFWorkbook(fi);
+		Sheet s = w.getSheet("Datas");
+		Row r = s.getRow(0);
+
+		int rowcount = s.getPhysicalNumberOfRows();
+		int cellcount = r.getPhysicalNumberOfCells();
+
+		Object obj[][] = new Object[rowcount][cellcount];
+
+		for (int i = 1; i < rowcount; i++) {
+			Row rr = s.getRow(i);
+			for (int j = 0; j < cellcount; j++) {
+				Cell c = rr.getCell(j);
+				int cellType = c.getCellType();
+
+				String value = null;
+
+				if (cellType == 1) {
+					value = c.getStringCellValue();
+				} else {
+					if (DateUtil.isCellDateFormatted(c)) {
+						value = new SimpleDateFormat("DD-MM-YYYY").format(c.getDateCellValue());
+					} else {
+						value = String.valueOf((long) c.getNumericCellValue());
+					}
+				}
+				obj[i][j] = value;
+			}
+		}
+		return obj;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		
+		Object[][] data = getdata();
+		System.out.println(data[0][0]);
+		for (Object[] x: data) {
+			for (Object y: x) {
+				System.out.println(y);
+			}			
+		}		
+	}
+	
+	
+	@Test(dataProvider="data")
+	private void test1(String user,String pass ) {
+	System.out.println(user);
+	System.out.println(pass);
+}
+	
+	@DataProvider(name ="data", indices = {1,2})
+	private Object[][] getexcel() throws IOException {
+		return getdata();
+	}	
+}
